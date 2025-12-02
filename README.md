@@ -1,16 +1,22 @@
 # PySTOL: Nonlinear 6-DOF Flight Dynamics Simulation of a Distributed Propulsion STOL Aircraft
 
-## 📄 Abstract
+![Python](https://img.shields.io/badge/Code-Python_3.11-blue?logo=python&logoColor=white)
+![CFD](https://img.shields.io/badge/Validation-FlightGear-blue?logo=flightgear&logoColor=white)
+![CAD](https://img.shields.io/badge/Design-Numpy-blue)
+![CAD](https://img.shields.io/badge/Design-Scipy-blue)
+![Status](https://img.shields.io/badge/Status-Complete-success)
+
+## Abstract
 [cite_start]This project involves the design, development, and validation of a nonlinear 6-Degrees-of-Freedom (6-DOF) flight dynamics simulator tailored for a Short Take-off and Landing (STOL) aircraft[cite: 4]. [cite_start]The simulation models rigid body dynamics, inertial coupling, and the specific aerodynamic effects of distributed propulsion ("blown wing")[cite: 5]. [cite_start]The system was implemented in Python using NumPy and SciPy, validated through post-flight parameter estimation, and visualized via a Software-in-the-Loop (SIL) interface with FlightGear[cite: 6].
 
-## 🎯 Objectives
+## Objectives
 [cite_start]The main objectives of this project are[cite: 10]:
 1.  [cite_start]**Model** the nonlinear equations of motion for a rigid body aircraft[cite: 11].
 2.  [cite_start]**Simulate** the "Blown Wing" effect where propeller wash augments lift[cite: 12].
 3.  [cite_start]**Validate** the physics using System Identification techniques[cite: 13].
 4.  [cite_start]**Visualize** the trajectory using UDP streaming to FlightGear[cite: 14].
 
-## ⚙️ Theoretical Framework
+## Theoretical Framework
 
 ### Coordinate Systems
 * [cite_start]**Inertial Frame ($F_E$):** Fixed to the Earth (North-East-Down), used for navigation ($X_e, y_e, Z_e$)[cite: 17].
@@ -24,7 +30,7 @@ $$C_L(\alpha, \delta_t) = C_{L_{basic}}(\alpha) + C_{L_{blown}}(\delta_t, \alpha
 [cite_start]Where the blown effect is approximated as[cite: 36]:
 $$C_{L_{blown}} = k_{blown} \cdot \delta_t \cdot \sin(\alpha + \epsilon)$$
 
-## 💻 Technology Stack
+## Technology Stack
 * [cite_start]**Language:** Python 3.9 [cite: 40]
 * [cite_start]**Physics Engine:** NumPy (Vectorized matrix operations) [cite: 41]
 * [cite_start]**Solver:** SciPy `solve_ivp` (Runge-Kutta 4/5 method) [cite: 42]
@@ -58,10 +64,10 @@ Tested energy conservation and coupling using a "Loop-the-Loop" control input. [
 [cite_start]*Figure 3: Angle of Attack History [cite: 146]*
 
 ### Phase 4: SIL Visualisation
-SIL Implementation, visualizing the behaviour of the flight path to study and verify other characteristics like flight path, properties using Cessna 172P on FlightGear  
+SIL Implementation, visualizing the behaviour of the flight path to study and verify other characteristics like flight path, properties using Cessna 172P on FlightGear. Download and watch the video.
 
 ![SIL Visualisation](Pictures/Nonlinear%206-DOF%20Flight%20Dynamics%20Simulator_Cessna%20172P.mp4)
 
-## 🔮 Future Work
+## Future Work
 * [cite_start]**HIL Implementation:** Deploying the Python code to an embedded Raspberry Pi to drive servos[cite: 178].
 * [cite_start]**Control Laws:** Implementing a PID Stability Augmentation System (SAS) for the pitch axis[cite: 179].
