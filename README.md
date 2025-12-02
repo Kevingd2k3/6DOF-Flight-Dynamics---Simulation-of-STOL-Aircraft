@@ -43,7 +43,7 @@ $$C_{L_{blown}} = k_{blown} \cdot \delta_t \cdot \sin(\alpha + \epsilon)$$
 * [cite_start]`sil_interface.py` **(The Interface):** A UDP socket bridge that streams state vectors to external visualization tools[cite: 48].
 * [cite_start]`validate.py`: Validation script for post-flight parameter estimation[cite: 142].
 
-## 📊 Results
+## Results
 
 ### Phase 1: 1-DOF Verification
 Validated the integration scheme and drag modeling logic by simulating a falling mass. [cite_start]The velocity approached an asymptote where Drag = Weight[cite: 52, 53].
