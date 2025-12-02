@@ -1,0 +1,1 @@
+--generic=socket,in,10,127.0.0.1,5500,udp,pystol --fdm=null

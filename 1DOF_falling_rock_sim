@@ -1,0 +1,64 @@
+import numpy as np
+from scipy.integrate import solve_ivp
+import matplotlib.pyplot as plt
+
+#1. THE PHYSICS ENGINE (State-Space Model)
+def equations_of_motion(t, state):
+    # state[0] is Altitude (z)
+    # state[1] is Velocity (vz)
+    
+    # Unpack the current state
+    z = state[0]
+    vz = state[1]
+    
+    # Physics Constants
+    g = 9.81          # Gravity (m/s^2)
+    m = 10.0          # Mass (kg)
+    rho = 1.225       # Air Density (kg/m^3)
+    Cd = 0.5          # Drag Coefficient (Sphere)
+    Area = 0.1        # Cross-sectional Area (m^2)
+    
+    # Calculate Forces
+    # Weight acts down (+z is usually down in aero, but we'll use Up is Positive for this simple test)
+    weight = -m * g   
+    
+    # Drag opposes velocity
+    # If vz is negative (falling), drag is positive (up)
+    drag = -0.5 * rho * vz * abs(vz) * Cd * Area
+    
+    # F = ma  ->  a = F / m
+    total_force = weight + drag
+    az = total_force / m
+    
+    # Return the derivatives [z_dot, vz_dot] -> [velocity, acceleration]
+    return [vz, az]
+
+# 2. THE SIMULATION LOOP
+# Scenario: Drop a rock from 1000m
+initial_state = [1000, 0]  # [Altitude=1000m, Velocity=0 m/s]
+time_span = [0, 20]        # Simulate for 20 seconds
+
+# The Solver: Python doing the calculus
+print("Simulating physics...")
+solution = solve_ivp(equations_of_motion, time_span, initial_state, t_eval=np.linspace(0, 20, 100))
+
+# 3. THE VISUALIZATION
+print("Plotting data...")
+plt.figure(figsize=(10, 5))
+
+# Plot Altitude vs Time
+plt.subplot(1, 2, 1)
+plt.plot(solution.t, solution.y[0], color='blue')
+plt.title('Altitude (m)')
+plt.xlabel('Time (s)')
+plt.grid(True)
+
+# Plot Velocity vs Time
+plt.subplot(1, 2, 2)
+plt.plot(solution.t, solution.y[1], color='red')
+plt.title('Vertical Velocity (m/s)')
+plt.xlabel('Time (s)')
+plt.grid(True)
+
+plt.tight_layout()
+plt.show()
